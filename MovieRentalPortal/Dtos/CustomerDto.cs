@@ -16,6 +16,7 @@ namespace MovieRentalPortal.Dtos
         public string CustomerName { get; set; }
         public bool IsSubscribedForNewsLetter { get; set; }
 
+        public MembershipTypeDto MembershipType { get; set; }
         public byte MembershipTypeId { get; set; }
 
         //[Min18YearsIfMember]

@@ -14,6 +14,7 @@ namespace MovieRentalPortal.App_Start
         {
             Mapper.CreateMap<Customer, CustomerDto>();
             Mapper.CreateMap<CustomerDto, Customer>().ForMember(dest => dest.CustomerId, action => action.Ignore());
+            Mapper.CreateMap<MembershipType, MembershipTypeDto>();
         }
     }
 }

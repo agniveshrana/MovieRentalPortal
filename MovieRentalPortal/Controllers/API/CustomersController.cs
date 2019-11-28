@@ -7,6 +7,7 @@ using System.Web.Http;
 using MovieRentalPortal.Models;
 using MovieRentalPortal.Dtos;
 using AutoMapper;
+using System.Data.Entity;
 
 namespace MovieRentalPortal.Controllers.API
 {
@@ -23,7 +24,7 @@ namespace MovieRentalPortal.Controllers.API
         [HttpGet]
         public IEnumerable<CustomerDto> GetCustomers()
         {
-            var customers = _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList().Select(Mapper.Map<Customer, CustomerDto>);
             return customers;
         }
 
