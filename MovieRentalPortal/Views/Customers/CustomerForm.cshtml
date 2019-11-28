@@ -1,0 +1,36 @@
+﻿@model MovieRentalPortal.ViewModels.CustomerFormViewModel
+@{
+    /**/
+
+    ViewBag.Title = "New";
+}
+
+<h2>New Customer</h2>
+@using (Html.BeginForm("Save", "Customers"))
+{
+    @Html.ValidationSummary(true, "Please fill the below errors.")
+    <div class="form-group">
+        @Html.LabelFor(c => c.Customer.CustomerName)
+        @Html.TextBoxFor(c => c.Customer.CustomerName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Customer.CustomerName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.Customer.BirthDate)
+        @Html.TextBoxFor(c => c.Customer.BirthDate, "{0: d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Customer.BirthDate)
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(c => c.Customer.IsSubscribedForNewsLetter) Subscribed to Newsletter?
+        </label>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.Customer.MembershipTypeId)
+        @Html.DropDownListFor(c => c.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "id","Name"), "Select Membership Type" ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Customer.MembershipTypeId)
+    </div>
+    @Html.HiddenFor(c => c.Customer.CustomerId)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+

@@ -1,0 +1,14 @@
+﻿@model MovieRentalPortal.Models.Customer
+@{
+    ViewBag.Title = "GetCustomerDetail";
+}
+
+<h2>@Model.CustomerName</h2>
+<ul>
+    <li>Membership Type : @Model.MembershipType.Name</li>
+    @if (Model.BirthDate != null)
+    {
+        <li>Birth Date : @Model.BirthDate</li>
+    }
+</ul>
+
