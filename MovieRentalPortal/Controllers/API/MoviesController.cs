@@ -22,9 +22,14 @@ namespace MovieRentalPortal.Controllers.API
 
         // GET --> /api/movies
         [HttpGet]
-        public IEnumerable<MovieDto> GetMovies()
+        public IEnumerable<MovieDto> GetMovies(string query = null) // this is for typeahead
         {
-            var movies = _context.Movies.Include(m => m.Genre).ToList().Select(Mapper.Map<Movie, MovieDto>);
+            var moviesQuery = _context.Movies.Include(m => m.Genre);
+
+            if (!String.IsNullOrWhiteSpace(query))
+                moviesQuery = moviesQuery.Where(m => m.MovieName.Contains(query));
+
+            var movies = moviesQuery.ToList().Select(Mapper.Map<Movie, MovieDto>);
             return movies;
         }
 

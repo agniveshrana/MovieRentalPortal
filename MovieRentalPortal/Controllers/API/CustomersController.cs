@@ -22,9 +22,14 @@ namespace MovieRentalPortal.Controllers.API
 
         // GET --> /api/customers
         [HttpGet]
-        public IEnumerable<CustomerDto> GetCustomers()
+        public IEnumerable<CustomerDto> GetCustomers(string query = null)
         {
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList().Select(Mapper.Map<Customer, CustomerDto>);
+            var customersQuery = _context.Customers.Include(c => c.MembershipType);
+
+            if (!String.IsNullOrWhiteSpace(query))
+                customersQuery = customersQuery.Where(c => c.CustomerName.Contains(query));
+
+            var customers = customersQuery.ToList().Select(Mapper.Map<Customer, CustomerDto>);
             return customers;
         }
 
