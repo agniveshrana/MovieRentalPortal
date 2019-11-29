@@ -288,6 +288,10 @@
     <Compile Include="Migrations\201911291641081_AddRemainingQtyToMovie.Designer.cs">
       <DependentUpon>201911291641081_AddRemainingQtyToMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911291917246_AddRentalModel1.cs" />
+    <Compile Include="Migrations\201911291917246_AddRentalModel1.Designer.cs">
+      <DependentUpon>201911291917246_AddRentalModel1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -693,6 +697,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911291641081_AddRemainingQtyToMovie.resx">
       <DependentUpon>201911291641081_AddRemainingQtyToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911291917246_AddRentalModel1.resx">
+      <DependentUpon>201911291917246_AddRentalModel1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

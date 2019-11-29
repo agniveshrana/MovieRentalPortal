@@ -3,7 +3,7 @@ namespace MovieRentalPortal.Migrations
     using System;
     using System.Data.Entity.Migrations;
 
-    public partial class AddRentalModel : DbMigration
+    public partial class AddRentalModel1 : DbMigration
     {
         public override void Up()
         {
