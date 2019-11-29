@@ -27,6 +27,9 @@ namespace MovieRentalPortal.Controllers.API
 
             foreach (var movie in movies)
             {
+                if (movie.RemainingQty == 0)
+                    BadRequest("This movie is out of stock");
+
                 var rental = new Rental
                 {
                     Customer = customer,
@@ -34,6 +37,7 @@ namespace MovieRentalPortal.Controllers.API
                     DateRented = DateTime.Now
                 };
 
+                movie.RemainingQty--;
                 _context.Rentals.Add(rental);
             }
 

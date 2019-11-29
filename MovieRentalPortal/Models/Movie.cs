@@ -28,5 +28,7 @@ namespace MovieRentalPortal.Models
 
         [Required]
         public byte GenreId { get; set; }
+
+        public int RemainingQty { get; set; }
     }
 }
