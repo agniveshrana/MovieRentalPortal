@@ -44,7 +44,7 @@ else
 
         $(document).ready(function () {
 
-            $("#movies").DataTable({
+            var table = $("#movies").DataTable({
                 ajax: {
                     url: "/api/Movies",
                     dataSrc: ""
@@ -76,7 +76,8 @@ else
                             url: "/api/Movies/" + button.attr("data-movie-id"),
                             method: "DELETE",
                             success: function () {
-                                button.parents("tr").remove();
+                                table.row(button.parents("tr")).remove().draw();
+                                //button.parents("tr").remove();
                             }
                         })
                     }
