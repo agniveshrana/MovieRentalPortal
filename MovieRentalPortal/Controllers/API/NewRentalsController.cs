@@ -19,6 +19,7 @@ namespace MovieRentalPortal.Controllers.API
         }
 
         [HttpPost]
+        [Route("api/NewRentals")]
         public IHttpActionResult CreateNewRentals(RentalDto rentalDto)
         {
             var customer = _context.Customers.Single(c => c.CustomerId == rentalDto.CustomerId);
