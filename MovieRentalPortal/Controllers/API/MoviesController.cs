@@ -24,7 +24,7 @@ namespace MovieRentalPortal.Controllers.API
         [HttpGet]
         public IEnumerable<MovieDto> GetMovies(string query = null) // this is for typeahead
         {
-            var moviesQuery = _context.Movies.Include(m => m.Genre);
+            var moviesQuery = _context.Movies.Include(m => m.Genre).Where(m => m.RemainingQty > 0);
 
             if (!String.IsNullOrWhiteSpace(query))
                 moviesQuery = moviesQuery.Where(m => m.MovieName.Contains(query));
