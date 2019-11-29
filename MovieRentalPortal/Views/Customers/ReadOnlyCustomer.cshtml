@@ -1,0 +1,68 @@
+﻿@model MovieRentalPortal.ViewModels.CustomerViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Customers List</h2>
+
+<br /><br /><br />
+@if (Model.CustomerList.Count == 0)
+{
+    <p>We don't have any customers yet. </p>
+}
+else
+{
+
+    <table id="customers" class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Customer</th>
+                <th scope="col">MembershipType</th>
+                <th scope="col">Discount Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @*@foreach (var cust in Model.CustomerList)
+        {
+        <tr class="table-light">
+
+            <td>
+                @Html.ActionLink(cust.CustomerName, "Edit", "Customers", new { cust.CustomerId }, null)
+            </td>
+            <td>@cust.MembershipType.Name</td>
+            <td> @cust.MembershipType.DiscountRate%</td>
+            <td> <button data-customer-id="@cust.CustomerId" class="btn-link js-delete">Delete</button></td>
+        </tr>
+        }*@
+        </tbody>
+    </table>
+
+}
+
+@section scripts
+{
+    <script>
+
+        $(document).ready(function () {
+
+            var table = $("#customers").DataTable({
+                ajax: {
+                    url: "/api/Customers",
+                    dataSrc: ""
+                },
+                columns: [{
+                    data: "CustomerName"
+                },
+                {
+                    data: "MembershipType.Name"
+                },
+                {
+                    data: "MembershipType.DiscountRate"
+                }]
+
+            });
+
+        });
+
+    </script>
+}

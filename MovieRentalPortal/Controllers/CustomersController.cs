@@ -31,7 +31,10 @@ namespace MovieRentalPortal.Controllers
             var customers = _context.Customers.Include(c => c.MembershipType).ToList();
             customerVM.CustomerList = customers;
 
-            return View(customerVM);
+            if (User.IsInRole(RoleName.ADMIN))
+                return View(customerVM);
+
+            return View("ReadOnlyCustomer", customerVM);
         }
 
         [Route("Customers/Details/{customerId}")]

@@ -31,7 +31,10 @@ namespace MovieRentalPortal.Controllers
             var movies = _context.Movies.Include(m => m.Genre).ToList();
             movieVM.MovieList = movies;
 
-            return View(movieVM);
+            if (User.IsInRole(RoleName.ADMIN))
+                return View(movieVM);
+
+            return View("ReadOnlyMovie", movieVM);
         }
 
         [Route("Movies/Details/{MovieId}")]
